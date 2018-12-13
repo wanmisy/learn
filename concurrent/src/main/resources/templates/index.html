@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"></meta>
+	<title>Hello</title>
+</head>
+	<body>
+		<button id="purchase">
+			购买
+		</button>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script>
+			$(function(){
+			var id = 1;
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:8080/product/" + id,
+				dataType: "json",
+				success: function(data) {
+					console.log(data);
+				}
+			});
+			})
+
+            $("#purchase").click(function(){
+                for (var i=1; i<=1000; i++) {
+                    var params = {
+                        userId: 1,
+                        productId: 1,
+                        num: 1
+                    };
+                    // 通过POST请求后端，这里的JavaScript会采用异步请求
+                    $.post("http://localhost:8080/product/order-model/purchase", params, function (result) {
+                        console.log(result.message)
+                    });
+                }
+            })
+		</script>
+	</body>
+</html>
